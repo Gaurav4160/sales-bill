@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Sales Bill Management System</title>
+    <style>
+
+        /* CSS styles for the sales bills table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* CSS styles for the "Add Sale" button */
+        .add-sale-button {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h1>Sales Bill Management System</h1>
+            <asp:Button ID="btnAddSale" runat="server" Text="Add Sale" CssClass="add-sale-button" OnClick="btnAddSale_Click" />
+            <asp:GridView ID="gvSalesBills" runat="server" AutoGenerateColumns="False" OnRowCommand="gvSalesBills_RowCommand">
+                <Columns>
+                    <asp:BoundField DataField="SaleID" HeaderText="Sale ID" />
+                    <asp:BoundField DataField="BillDate" HeaderText="Bill Date" DataFormatString="{0:MM/dd/yyyy}" />
+                    <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" />
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:Button ID="btnView" runat="server" Text="View" CommandName="ViewSale" CommandArgument='<%# Eval("SaleID") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+        </div>
+    </form>
+</body>
+</html>
